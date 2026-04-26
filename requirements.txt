@@ -1,2 +1,11 @@
 modelscope
 oss2
+numpy
+tqdm
+Pillow
+torch
+transformers>=4.57.0
+qwen-vl-utils>=0.0.14
+faiss-cpu
+sentencepiece
+timm
