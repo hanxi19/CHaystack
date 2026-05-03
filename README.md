@@ -77,3 +77,37 @@ bash scripts/run_filter_rag_ablation.sh
 
 This script caches retrieval and filtering results so different generator
 settings can reuse the same intermediate files.
+
+## References and data sources
+
+CHaystack builds on **public** Chinese document resources. If you use this
+repository or derived benchmark files, please cite the **original dataset
+publications** and respect their licenses. 
+
+
+| CHaystack category     | Upstream resource |
+| ---------------------- | ----------------- |
+| Academic papers        | **CDLA**          |
+| Web pages              | **DuReader_vis**  |
+| Photographed documents | **XFUND, CC-OCR** |
+| Advertisements         | **MTWI**          |
+
+
+### Suggested bibliographic entries
+
+1. **CDLA.** Community dataset release. Available at
+  [https://github.com/buptlihang/CDLA](https://github.com/buptlihang/CDLA).
+2. **DuReader_vis.** Le Qi, Shangwen Lv, Hongyu Li, et al. *DuReader_vis: A
+  Chinese Dataset for Open-domain Document Visual Question Answering.*
+   Findings of ACL, 2022, pp. 1338–1351.
+3. **XFUND (form understanding; multilingual layout).** Yiheng Xu, Tengchao Lv,
+  Lei Cui, et al. *LayoutXLM: Multimodal Pre-training for Multilingual
+   Visually-rich Document Understanding.* 2021. (Dataset release:
+   [XFUND on GitHub](https://github.com/doc-analysis/XFUND).)
+4. **CC-OCR.** Zhibo Yang, Jun Tang, Zhaohai Li, et al. *CC-OCR: A Comprehensive
+  and Challenging OCR Benchmark.* 2024. (See also the dataset card at
+   [Hugging Face](https://huggingface.co/datasets/wulipc/CC-OCR).)
+5. **MTWI / multi-type web images.** Mengchao He, Yuliang Liu, Zhibo Yang, et al.
+  *ICPR2018 Contest on Robust Reading for Multi-Type Web Images.* Proceedings of  
+   ICPR, 2018, pp. 7–12.
+
