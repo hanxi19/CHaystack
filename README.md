@@ -1,5 +1,7 @@
 # CHaystack
 
+<img width="1091" height="856" alt="系统图_png" src="https://github.com/user-attachments/assets/4f41ff13-8033-44d1-a1b1-051f147a7150" />
+
 CHaystack is a benchmark for
 Chinese document image question answering. It builds a visual document corpus
 from multiple public datasets, indexes document images with a multimodal
