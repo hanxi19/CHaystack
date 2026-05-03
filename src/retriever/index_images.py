@@ -176,7 +176,15 @@ def parse_args() -> argparse.Namespace:
         default=".png,.jpg,.jpeg,.PNG,.JPG,.JPEG",
         help="图片扩展名（逗号分隔）",
     )
-    parser.add_argument("--batch_size", type=int, default=64)
+    parser.add_argument(
+        "--batch_size",
+        type=int,
+        default=2,
+        help=(
+            "每批送入 encode_images 的图片数；Qwen3-VL 显存占用大，24GB 上 OOM 请改为 1–8（可先 1–2）。"
+            "CLIP/SigLIP 可保持较大 batch。"
+        ),
+    )
     parser.add_argument("--device", type=str, default="cuda")
     parser.add_argument(
         "--faiss_factory",

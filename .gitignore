@@ -1,0 +1,50 @@
+# ----- Python -----
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+ENV/
+.env
+.env.*
+
+# ----- 数据与大文件（按需保留：若某项要入库，在行前加 # 或删掉对应行）-----
+benchmark/data/
+data/
+*.tar.gz
+*.zip
+*.7z
+
+# ----- 向量库 / 索引 / 运行时产物（按需调整路径） -----
+*.index/
+index_store/
+**/chroma/
+**/.chromadb/
+
+# ----- 产出图、缓存、notebook -----
+*.pdf
+*.png
+*.jpg
+*.jpeg
+outputs/
+runs/
+wandb/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.log
+
+# ----- IDE -----
+.idea/
+.vscode/
+*.swp
+.DS_Store
+
+# ----- paper -----
+paper/
+
+
+# ----- 其它 -----
+.claude/

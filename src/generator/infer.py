@@ -1,24 +1,33 @@
 """
 Inference script for DocumentVQA generator.
 
+Supports three model families via auto-detection:
+- Qwen-VL: Qwen/Qwen2.5-VL-3B-Instruct, Qwen/Qwen3-VL-*, etc.
+- LLaVA:   llava-hf/llava-onevision-qwen2-0.5b-ov-hf, etc.
+- InternVL: OpenGVLab/InternVL2_5-4B, etc.
+
 Example usage:
     # Single query with explicit images
-    python -m src.generator.infer \
-        --model_name Qwen/Qwen2.5-VL-3B-Instruct \
-        --question "发票号码是什么？" \
+    python -m src.generator.infer \\
+        --model_name Qwen/Qwen2.5-VL-3B-Instruct \\
+        --question "发票号码是什么？" \\
         --image_paths /path/to/doc1.png /path/to/doc2.png
 
     # Batch inference from retriever output
-    python -m src.generator.infer \
-        --model_name Qwen/Qwen2.5-VL-3B-Instruct \
-        --retrieval_results /path/to/retriever_output.jsonl \
+    python -m src.generator.infer \\
+        --model_name Qwen/Qwen2.5-VL-3B-Instruct \\
+        --retrieval_results /path/to/retriever_output.jsonl \\
         --output_path /path/to/generator_output.jsonl
 
-    # With custom system prompt
-    python -m src.generator.infer \
-        --model_name Qwen/Qwen2.5-VL-3B-Instruct \
-        --retrieval_results /path/to/retriever_output.jsonl \
-        --system_prompt "你的自定义prompt"
+    # LLaVA-OneVision
+    python -m src.generator.infer \\
+        --model_name llava-hf/llava-onevision-qwen2-0.5b-ov-hf \\
+        --retrieval_results /path/to/retriever_output.jsonl
+
+    # InternVL2.5
+    python -m src.generator.infer \\
+        --model_name OpenGVLab/InternVL2_5-4B \\
+        --retrieval_results /path/to/retriever_output.jsonl
 """
 
 from __future__ import annotations
@@ -29,7 +38,7 @@ import sys
 from pathlib import Path
 from typing import Any
 
-from ..model import GeneratorConfig, QwenVLGenerator
+from ..model import GeneratorConfig, GeneratorFactory
 from .answer_normalizer import NormalizeConfig
 
 
@@ -191,7 +200,7 @@ def extract_image_paths(
 
 
 def process_single_query(
-    generator: QwenVLGenerator,
+    generator,
     question: str,
     image_paths: list[str],
 ) -> dict[str, Any]:
@@ -208,7 +217,7 @@ def process_single_query(
 
 
 def process_batch(
-    generator: QwenVLGenerator,
+    generator,
     retrieval_results: list[dict[str, Any]],
     top_k: int,
     image_key: str,
@@ -294,7 +303,7 @@ def main() -> None:
     print(f"[init] 加载模型: {args.model_name}", file=sys.stderr)
     from .answer_normalizer import AnswerNormalizer
 
-    generator = QwenVLGenerator(
+    generator = GeneratorFactory.create(
         config=generator_config,
         normalizer=AnswerNormalizer(normalizer_config),
     )

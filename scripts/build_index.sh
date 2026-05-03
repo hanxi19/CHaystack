@@ -20,7 +20,7 @@ BUILD_WEBPAGE=true
 BUILD_ADVERTISE=true
 
 # 其他参数
-BATCH_SIZE=64
+BATCH_SIZE=16
 LIMIT=""                             # 限制图片数量（调试用），留空表示处理全部
 
 # ============================================

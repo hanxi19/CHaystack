@@ -25,7 +25,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
-from src.model import GeneratorConfig, MultimodalEmbeddingModel, Reranker, QwenVLGenerator
+from src.model import GeneratorConfig, GeneratorFactory, MultimodalEmbeddingModel, Reranker
 from src.planner import AnchorQueryPlan, AnchorQueryPlanner
 from src.storage import NumpyVectorStore, SearchResult, CategoryAwareIndexManager
 from src.util.benchmark_loader import ALL_CATEGORIES, BenchmarkLoader
@@ -301,7 +301,7 @@ def main() -> None:
     retriever = MultimodalEmbeddingModel(retriever_model_name, device=args.device)
 
     print(f"[init] loading generator: {args.generator_model}")
-    generator = QwenVLGenerator(
+    generator = GeneratorFactory.create(
         GeneratorConfig(
             model_name=args.generator_model,
             device=args.device,
