@@ -1,4 +1,4 @@
-# CHaystack
+# CHaystack: Benchmarking Chinese Document Retrieval and VQA
 
 <img width="1091" height="856" alt="系统图_png" src="https://github.com/user-attachments/assets/4f41ff13-8033-44d1-a1b1-051f147a7150" />
 
